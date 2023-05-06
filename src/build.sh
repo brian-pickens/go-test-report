@@ -7,13 +7,3 @@ unzip -q gotestsum-v1.10.0.zip; mv gotestsum-1.10.0/* /build
 cd /build
 go build -o /usr/local/bin/gotestsum
 chmod +x /usr/local/bin/gotestsum
-
-echo -e "----------------\nRunning Action\n----------------\n"
-
-echo "hello world!"
-echo $(go version)
-
-cd /github/workspace
-gotestsum ./...
-
-echo -e "\n----------------\nAction complete\n----------------"
