@@ -1,4 +1,5 @@
 build:
-	docker build ./src/.
+	docker build -t go-test-report ./src/.
 run:
-	docker run --rm -it $$(docker build -q ./src/.)
+	docker build -t go-test-report -q ./src/.
+	docker run --rm -it $$(docker build -q ./test/.)
