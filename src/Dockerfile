@@ -1,4 +1,5 @@
 FROM golang:1.20-alpine as Action
+RUN apk update && apk add jq
 
 RUN go env -w GO111MODULE="on"
 
