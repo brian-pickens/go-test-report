@@ -1,6 +1,8 @@
 FROM go-test-report
 
-COPY --from=go-test-report /build /github/workspace
+COPY go.mod /github/workspace
+COPY main_test.go /github/workspace
+COPY main.go /github/workspace
 COPY test-entrypoint.sh /test-entrypoint.sh
 
 WORKDIR /action-workspace
