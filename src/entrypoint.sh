@@ -1,9 +1,11 @@
 #!/bin/sh -l
 
-echo "hello world!"
-echo $(go version)
+echo -e "---------------\nRunning Action\n---------------\n"
 
-wget https://github.com/gotestyourself/gotestsum/releases/download/v1.10.0/gotestsum_1.10.0_linux_amd64.tar.gz
-mv gotestsum_1.10.0_linux_amd64.tar.gz gotestsum
+cd /github/workspace
+gotestsum --junitfile TEST-RESULTS.xml --jsonfile TEST-RESULTS.json $modules
+echo "junit-report=$(cat TEST-RESULTS.xml)" >> $GITHUB_OUTPUT
+echo "json-report=$(cat TEST-RESULTS.json)" >> $GITHUB_OUTPUT
+echo "markdown-report=$(junit2md TEST-RESULTS.xml)" >> $GITHUB_OUTPUT
 
-ls -l
+echo -e "\n---------------\nAction complete\n---------------"

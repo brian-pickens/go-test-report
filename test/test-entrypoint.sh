@@ -1,7 +1,10 @@
 #!/bin/sh -l
 
-echo -e "----\nRun commencing\n----\n"
+# Simulate setting input environment variables
+export modules="./..."
+export GITHUB_OUTPUT="/github_output.txt"
 
+# Run action entrypoint
 /entrypoint.sh
 
-echo -e "\n----\nRun complete\n----"
+cat $GITHUB_OUTPUT
