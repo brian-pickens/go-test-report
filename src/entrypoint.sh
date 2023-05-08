@@ -14,7 +14,7 @@ echo "junit-report<<EOF"$'\n'"${junit_report}"$'\n'EOF >> $GITHUB_OUTPUT
 echo "markdown-report<<EOF"$'\n'"${markdown_report}"$'\n'EOF >> $GITHUB_OUTPUT
 
 # Set Summary
-echo "markdown-report<<EOF"$'\n'"${markdown_report}"$'\n'EOF >> $GITHUB_STEP_SUMMARY
+echo "${markdown_report}" >> $GITHUB_STEP_SUMMARY
 
 # Output json report to debugging
 echo "::debug::json report"
