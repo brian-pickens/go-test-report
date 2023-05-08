@@ -20,7 +20,7 @@ echo "junit-report<<EOF"$'\n'"${junit_report}"$'\n'EOF >> $GITHUB_OUTPUT
 echo "markdown-report<<EOF"$'\n'"${markdown_report}"$'\n'EOF >> $GITHUB_OUTPUT
 
 # Set Summary
-if [ "$INPUT_SUMMARY" = "true"]; then
+if [ "$INPUT_SUMMARY" = "true" ]; then
     echo "${markdown_report}" >> $GITHUB_STEP_SUMMARY
 fi;
 
