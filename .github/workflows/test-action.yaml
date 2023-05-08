@@ -1,0 +1,17 @@
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  run-passing-test:
+    runs-on: ubuntu-latest
+    name: Test main module
+    steps:
+      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v3
+      - id: go-test-report
+        uses: .
+      - name: Summary
+        run: echo ${test_summary} >> $GITHUB_STEP_SUMMARY
+        env:
+          test_summary: ${{ steps.go-test-report.outputs.markdown-report }} 
