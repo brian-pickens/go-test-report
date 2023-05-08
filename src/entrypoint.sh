@@ -46,7 +46,7 @@ echo "::debug::failed_tests:${failed_tests}"
 echo -e "\n---------------\nAction complete\n---------------"
 
 # Fail the action if any tests failed
-if [ -z "$failed_tests" ]; then
+if [ ! -z "$failed_tests" ]; then
     exit 1;
 fi;
 
