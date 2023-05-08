@@ -18,9 +18,13 @@ jobs:
           packages: ./test
       - name: Output Reports
         run: |
-          echo -e "${{ steps.test.outputs.junit-report }}"
-          echo -e "${{ steps.test.outputs.json-report }}"
-          echo -e "${{ steps.test.outputs.markdown-report }}"
+          echo -e "$json"
+          echo -e "$junit"
+          echo -e "$markdown"
+        env:
+          json: ${{ steps.test.outputs.json-report }}
+          junit: ${{ steps.test.outputs.junit-report }}
+          markdown: ${{ steps.test.outputs.markdown-report }}
     #   - name: Summary
     #     if: always()
     #     run: echo ${test_summary} >> $GITHUB_STEP_SUMMARY
