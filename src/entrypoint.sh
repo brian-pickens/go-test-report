@@ -10,13 +10,26 @@ json_report=$(jq -s '.' TEST-RESULTS.json)
 markdown_report=$(junit2md TEST-RESULTS.xml)
 
 echo "junit-report<<EOF"$'\n'"$junit_report"$'\n'EOF >> $GITHUB_ENV
+echo "json-report<<EOF"$'\n'"$json_report"$'\n'EOF >> $GITHUB_ENV
 echo "markdown-report<<EOF"$'\n'"$markdown_report"$'\n'EOF >> $GITHUB_ENV
-echo "json-report: ${json_report}" >> $GITHUB_OUTPUT
 
-echo "::debug::test"
-# echo "::debug::junit-report=${junit_report}"
-# echo "::debug::json-report=${json_report}"
-# echo "::debug::markdown-report=${markdown_report}"
+# Output junit report to debugging
+while read -r line;
+do
+    echo "::debug::${line}"
+done <<< $junit_report
+
+# Output json report to debugging
+while read -r line;
+do
+    echo "::debug::${line}"
+done <<< $json_report
+
+# Output markdown report to debugging
+while read -r line;
+do
+    echo "::debug::${line}"
+done <<< $markdown_report
 
 failed_tests=$(jq 'select(.Action | contains("fail"))' << $json_report)
 echo "::debug::failed_tests:${failed_tests}"
