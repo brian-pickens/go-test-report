@@ -17,6 +17,7 @@ jobs:
         with:
           packages: ./test
       - name: Summary
+        if: always()
         run: echo ${test_summary} >> $GITHUB_STEP_SUMMARY
         env:
           test_summary: ${{ steps.test.outputs.markdown-report }} 
