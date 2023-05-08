@@ -5,9 +5,9 @@ on:
   - workflow_dispatch
 
 jobs:
-  with-summary:
+  pass-with-summary:
     runs-on: ubuntu-latest
-    name: With Summary
+    name: Pass with Summary
     steps:
       - uses: actions/setup-go@v4
       - uses: actions/checkout@v3
@@ -15,8 +15,9 @@ jobs:
         id: test
         uses: ./
         with:
-          packages: ./test
-  withjout-summary:
+          packages: ./test/pass
+
+  pass-without-summary:
     runs-on: ubuntu-latest
     name: Without Summary
     steps:
@@ -26,7 +27,7 @@ jobs:
         id: test
         uses: ./
         with:
-          packages: ./test
+          packages: ./test/pass
           summary: false
       - name: Output Reports
         if: always()
@@ -39,6 +40,19 @@ jobs:
             junit: ${{ steps.test.outputs.junit-report }}
             markdown: ${{ steps.test.outputs.markdown-report }}
 
+  fail-with-summary:
+    runs-on: ubuntu-latest
+    name: Job fail on failed tests
+    steps:
+      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v3
+      - name: brian-pickens/go-test-report
+        id: test
+        uses: ./
+        with:
+          packages: ./test/fail
+          summary: true
+
   reports-only:
     runs-on: ubuntu-latest
     name: Reports Only
@@ -49,7 +63,7 @@ jobs:
         id: test
         uses: ./
         with:
-          packages: ./test
+          packages: ./test/fail
           reports-only: true
           summary: false
       - name: Output Reports
