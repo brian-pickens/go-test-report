@@ -1,0 +1,19 @@
+name: 'go-test-report'
+description: 'Run go tests and generate a report'
+inputs:
+  modules:
+    description: 'A list of go modules to test'
+    required: false
+    default: './...'
+outputs:
+  junit-report:
+    description: 'The junit xml report'
+  json-report:
+    description: 'The json xml report'
+  markdown-report:
+    description: 'The markdown report'
+runs:
+  using: 'docker'
+  image: 'src/Dockerfile'
+  args:
+    - ${{ inputs.modules }}
