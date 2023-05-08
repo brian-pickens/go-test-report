@@ -5,9 +5,9 @@ on:
   - workflow_dispatch
 
 jobs:
-  run-passing-test:
+  with-summary:
     runs-on: ubuntu-latest
-    name: Test main module
+    name: With Summary
     steps:
       - uses: actions/setup-go@v4
       - uses: actions/checkout@v3
@@ -16,18 +16,49 @@ jobs:
         uses: ./
         with:
           packages: ./test
+  withjout-summary:
+    runs-on: ubuntu-latest
+    name: Without Summary
+    steps:
+      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v3
+      - name: brian-pickens/go-test-report
+        id: test
+        uses: ./
+        with:
+          packages: ./test
+          summary: false
       - name: Output Reports
         if: always()
         run: |
-          echo -e "$json"
-          echo -e "$junit"
-          echo -e "$markdown"
+            echo -e "$json"
+            echo -e "$junit"
+            echo -e "$markdown"
         env:
-          json: ${{ steps.test.outputs.json-report }}
-          junit: ${{ steps.test.outputs.junit-report }}
-          markdown: ${{ steps.test.outputs.markdown-report }}
-    #   - name: Summary
-    #     if: always()
-    #     run: echo ${test_summary} >> $GITHUB_STEP_SUMMARY
-    #     env:
-    #       test_summary: ${{ steps.test.outputs.markdown-report }} 
+            json: ${{ steps.test.outputs.json-report }}
+            junit: ${{ steps.test.outputs.junit-report }}
+            markdown: ${{ steps.test.outputs.markdown-report }}
+
+  reports-only:
+    runs-on: ubuntu-latest
+    name: Reports Only
+    steps:
+      - uses: actions/setup-go@v4
+      - uses: actions/checkout@v3
+      - name: brian-pickens/go-test-report
+        id: test
+        uses: ./
+        with:
+          packages: ./test
+          reports-only: true
+          summary: false
+      - name: Output Reports
+        if: always()
+        run: |
+            echo -e "$json"
+            echo -e "$junit"
+            echo -e "$markdown"
+        env:
+            json: ${{ steps.test.outputs.json-report }}
+            junit: ${{ steps.test.outputs.junit-report }}
+            markdown: ${{ steps.test.outputs.markdown-report }}
