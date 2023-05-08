@@ -16,6 +16,11 @@ jobs:
         uses: ./
         with:
           packages: ./test
+      - name: Output Reports
+        run: |
+          echo ${{ steps.test.outputs.junit-report }}
+          echo ${{ steps.test.outputs.json-report }}
+          echo ${{ steps.test.outputs.markdown-report }}
       - name: Summary
         if: always()
         run: echo ${test_summary} >> $GITHUB_STEP_SUMMARY
