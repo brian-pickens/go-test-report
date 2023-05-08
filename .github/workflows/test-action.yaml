@@ -17,6 +17,7 @@ jobs:
         with:
           packages: ./test
       - name: Output Reports
+        if: always()
         run: |
           echo -e "$json"
           echo -e "$junit"
