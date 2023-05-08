@@ -5,6 +5,14 @@ inputs:
     description: 'A list of go modules to test. Defaults to test all modules "./...".'
     required: false
     default: './...'
+  report-only:
+    description: 'Generate test reports only. Does not fail action on failed tests.'
+    required: false
+    default: 'false'
+  summary:
+    description: 'Display test results in a step summary .'
+    required: false
+    default: 'true'
   GO111MODULE:
     description: 'Set the GO111MODULE go env variable. Defaults to "auto".'
     required: false

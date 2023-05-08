@@ -20,7 +20,9 @@ echo "junit-report<<EOF"$'\n'"${junit_report}"$'\n'EOF >> $GITHUB_OUTPUT
 echo "markdown-report<<EOF"$'\n'"${markdown_report}"$'\n'EOF >> $GITHUB_OUTPUT
 
 # Set Summary
-echo "${markdown_report}" >> $GITHUB_STEP_SUMMARY
+if [ $INPUT_SUMMARY == "true"]; then
+    echo "${markdown_report}" >> $GITHUB_STEP_SUMMARY
+fi;
 
 # Output json report to debugging
 echo "::debug::json report"
@@ -44,6 +46,11 @@ failed_tests=$(jq -c '.[] | select(.Action | contains("fail"))' <<< $json_report
 echo "::debug::failed_tests:${failed_tests}"
 
 echo -e "\n---------------\nAction complete\n---------------"
+
+# Exit successfully if report-only mode
+if [ $INPUT_REPORT_ONLY ]; then
+    exit 0;
+fi;
 
 # Fail the action if any tests failed
 if [ ! -z "$failed_tests" ]; then
