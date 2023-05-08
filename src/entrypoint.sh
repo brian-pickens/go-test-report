@@ -3,9 +3,9 @@
 echo -e "---------------\nRunning Action\n---------------\n"
 
 cd /github/workspace
-gotestsum --junitfile TEST-RESULTS.xml --jsonfile TEST-RESULTS.json $modules
+gotestsum --junitfile TEST-RESULTS.xml --jsonfile TEST-RESULTS.json $1
 junit_report=$(cat TEST-RESULTS.xml)
-json_report=$(cat TEST-RESULTS.json)
+json_report=$(jq -s '.' TEST-RESULTS.json)
 markdown_report=$(junit2md TEST-RESULTS.xml)
 
 echo "junit-report=${junit_report}" >> $GITHUB_OUTPUT
