@@ -17,19 +17,19 @@ echo "markdown-report<<EOF"$'\n'"$markdown_report"$'\n'EOF >> $GITHUB_ENV
 while read -r line;
 do
     echo "::debug::${line}"
-done <<< $junit_report
+done << $junit_report
 
 # Output json report to debugging
 while read -r line;
 do
     echo "::debug::${line}"
-done <<< $json_report
+done << $json_report
 
 # Output markdown report to debugging
 while read -r line;
 do
     echo "::debug::${line}"
-done <<< $markdown_report
+done << $markdown_report
 
 failed_tests=$(jq 'select(.Action | contains("fail"))' << $json_report)
 echo "::debug::failed_tests:${failed_tests}"
