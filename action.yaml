@@ -2,7 +2,7 @@ name: 'go-test-report'
 description: 'Run go tests and generate a report'
 inputs:
   packages:
-    description: 'A list of go modules to test. Defaults to test all modules "./...".'
+    description: 'Go packages test.'
     required: false
     default: './...'
   report-only:
@@ -10,11 +10,11 @@ inputs:
     required: false
     default: 'false'
   summary:
-    description: 'Display test results in a step summary .'
+    description: 'Display test results in a step summary.'
     required: false
     default: 'true'
   GO111MODULE:
-    description: 'Set the GO111MODULE go env variable. Defaults to "auto".'
+    description: 'Set the GO111MODULE go env variable.'
     required: false
     default: 'auto'
 outputs:
