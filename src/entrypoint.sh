@@ -3,6 +3,7 @@
 echo -e "---------------\nRunning Action\n---------------\n"
 
 cd /github/workspace
+go env -w GO111MODULE="$2"
 gotestsum --junitfile TEST-RESULTS.xml --jsonfile TEST-RESULTS.json $1
 junit_report=$(cat TEST-RESULTS.xml)
 json_report=$(jq -s '.' TEST-RESULTS.json)

@@ -1,10 +1,14 @@
 name: 'go-test-report'
 description: 'Run go tests and generate a report'
 inputs:
-  modules:
+  packages:
     description: 'A list of go modules to test. Defaults to test all modules "./...".'
     required: false
     default: './...'
+  GO111MODULE:
+    description: 'Set the GO111MODULE go env variable. Defaults to "auto".'
+    required: false
+    default: 'auto'
 outputs:
   junit-report:
     description: 'The junit xml report'

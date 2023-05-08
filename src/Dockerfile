@@ -1,8 +1,6 @@
 FROM golang:1.20-alpine as Action
 RUN apk update && apk add jq
 
-RUN go env -w GO111MODULE="on"
-
 COPY entrypoint.sh /entrypoint.sh
 
 RUN wget https://github.com/gotestyourself/gotestsum/archive/refs/tags/v1.10.0.zip -O gotestsum-v1.10.0.zip \
