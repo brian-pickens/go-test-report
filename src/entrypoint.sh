@@ -47,8 +47,8 @@ echo "::debug::failed_tests:${failed_tests}"
 
 echo -e "\n---------------\nAction complete\n---------------"
 
-# Exit successfully if report-only mode
-if [ "$INPUT_REPORT_ONLY" = "true" ]; then
+# Exit successfully if reports-only mode
+if [ "$INPUT_REPORTS_ONLY" = "true" ]; then
     exit 0;
 fi;
 

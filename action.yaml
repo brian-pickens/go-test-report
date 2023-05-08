@@ -5,7 +5,7 @@ inputs:
     description: 'Go packages test.'
     required: false
     default: './...'
-  report-only:
+  reports-only:
     description: 'Generate test reports only. Does not fail action on failed tests.'
     required: false
     default: 'false'

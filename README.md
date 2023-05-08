@@ -8,7 +8,7 @@ This action runs your go tests and generates reports in various formats for use 
 
 Go packages test. Default `"./..."`.
 
-### `report-only`
+### `reports-only`
 
 Generate test reports only. Does not fail action on failed tests. Default `"false"`.
 
@@ -42,7 +42,7 @@ Test results generated in a markdown format. Can be used to create summary or ch
   uses: brian-pickens/go-test-report@v1
   with:
     packages: "./..."
-    report-only: "false"
+    reports-only: "false"
     summary: "true"
     GO111MODULE: "auto"
 ```
