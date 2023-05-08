@@ -19,7 +19,7 @@ jobs:
 
   pass-without-summary:
     runs-on: ubuntu-latest
-    name: Without Summary
+    name: Pass without Summary
     steps:
       - uses: actions/setup-go@v4
       - uses: actions/checkout@v3
