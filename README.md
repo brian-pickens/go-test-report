@@ -1,6 +1,9 @@
 # go-test-report
 
-This action runs your go tests and generates reports in various formats for use in your ci-cd pipeline
+This action runs your go tests and generates reports in various formats for use in your ci-cd pipeline.
+
+It can generate action test summaries.
+![Screen Shot 2023-05-08 at 12 13 33 AM](https://user-images.githubusercontent.com/3659859/236739661-7acbc1e2-d50e-406d-97fb-49c9d999a0d3.png)
 
 ## Inputs
 
@@ -37,9 +40,7 @@ Test results generated in a markdown format. Can be used to create summary or ch
 ## Example usage
 
 ``` yaml
-- name: brian-pickens/go-test-report
-  id: test
-  uses: brian-pickens/go-test-report@v1
+- uses: brian-pickens/go-test-report@v1
   with:
     packages: "./..."
     reports-only: "false"
