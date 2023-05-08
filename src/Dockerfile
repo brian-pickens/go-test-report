@@ -1,5 +1,5 @@
 FROM golang:1.20-alpine as Action
-RUN apk update && apk add jq
+RUN apk update && apk add jq bash
 
 COPY entrypoint.sh /entrypoint.sh
 

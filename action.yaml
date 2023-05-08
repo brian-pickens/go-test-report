@@ -10,10 +10,10 @@ inputs:
     required: false
     default: 'auto'
 outputs:
+  json-report:
+    description: 'The json report'
   junit-report:
     description: 'The junit xml report'
-  json-report:
-    description: 'The json xml report'
   markdown-report:
     description: 'The markdown report'
 runs:
