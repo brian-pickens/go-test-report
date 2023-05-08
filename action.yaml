@@ -3,11 +3,11 @@ description: 'Run go tests and generate a report'
 inputs:
   packages:
     description: 'A list of go modules to test. Defaults to test all modules "./...".'
-    required: false
+    required: true
     default: './...'
   GO111MODULE:
     description: 'Set the GO111MODULE go env variable. Defaults to "auto".'
-    required: false
+    required: true
     default: 'auto'
 outputs:
   junit-report:
