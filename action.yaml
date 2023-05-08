@@ -1,5 +1,8 @@
 name: 'go-test-report'
 description: 'Run go tests and generate a report'
+branding:
+  icon: 'bar-chart'
+  color: 'green'
 inputs:
   packages:
     description: 'Go packages test.'
