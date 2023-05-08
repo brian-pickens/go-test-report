@@ -1,3 +1,5 @@
+name: Test Action
+
 on:
   - push
   - workflow_dispatch
@@ -11,6 +13,8 @@ jobs:
       - uses: actions/checkout@v3
       - id: go-test-report
         uses: ./
+        with:
+          modules: ./test/...
       - name: Summary
         run: echo ${test_summary} >> $GITHUB_STEP_SUMMARY
         env:
