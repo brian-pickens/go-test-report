@@ -8,9 +8,9 @@ junit_report=$(cat TEST-RESULTS.xml)
 json_report=$(jq -s '.' TEST-RESULTS.json)
 markdown_report=$(junit2md TEST-RESULTS.xml)
 
-echo "junit-report=${junit_report}" >> $GITHUB_OUTPUT
-echo "json-report=${json_report}" >> $GITHUB_OUTPUT
-echo "markdown-report=${markdown_report}" >> $GITHUB_OUTPUT
+echo "junit-report: ${junit_report}" >> $GITHUB_OUTPUT
+echo "json-report: ${json_report}" >> $GITHUB_OUTPUT
+echo "markdown-report<<EOF"$'\n'"$markdown_report"$'\n'EOF >> $GITHUB_OUTPUT
 
 echo "::debug::junit-report:${junit_report}"
 echo "::debug::json-report:${json_report}"
