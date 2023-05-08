@@ -2,13 +2,19 @@
 
 echo -e "---------------\nRunning Action\n---------------\n"
 
+# Setup workspace
 cd /github/workspace
 go env -w GO111MODULE="$INPUT_GO111MODULE"
+
+# Run tests
 gotestsum --junitfile TEST-RESULTS.xml --jsonfile TEST-RESULTS.json $INPUT_PACKAGES
+
+# Generate Reports
 json_report=$(jq -sc '.' TEST-RESULTS.json)
 junit_report=$(cat TEST-RESULTS.xml)
 markdown_report=$(junit2md TEST-RESULTS.xml)
 
+# Set Outputs
 echo "json-report=${json_report}" >> $GITHUB_OUTPUT
 echo "junit-report<<EOF"$'\n'"${junit_report}"$'\n'EOF >> $GITHUB_OUTPUT
 echo "markdown-report<<EOF"$'\n'"${markdown_report}"$'\n'EOF >> $GITHUB_OUTPUT
@@ -33,11 +39,13 @@ do
     echo "::debug::${line}"
 done <<< $markdown_report
 
+# Check for failed tests
 failed_tests=$(jq -c '.[] | select(.Action | contains("fail"))' <<< $json_report)
 echo "::debug::failed_tests:${failed_tests}"
 
 echo -e "\n---------------\nAction complete\n---------------"
 
+# Fail the action if any tests failed
 if [ -z "$failed_tests" ]; then
     exit 1;
 fi;
