@@ -10,7 +10,7 @@ jobs:
       - uses: actions/setup-go@v4
       - uses: actions/checkout@v3
       - id: go-test-report
-        uses: .
+        uses: ./
       - name: Summary
         run: echo ${test_summary} >> $GITHUB_STEP_SUMMARY
         env:
